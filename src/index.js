@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import Main from './components/Root'
+import Main from './components/Main'
 import rootReducer from './reducers'
 
 export const store = createStore(rootReducer)
