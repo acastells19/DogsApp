@@ -1,4 +1,10 @@
-export const setBreeds = breeds => ({
-  type: 'SET_BREEDS',
-  breeds: breeds
+export const setBreedImagesCount = (breed, count) => ({
+  type: 'SET_BREED_IMAGES_COUNT',
+  breed: breed,
+  count: count
+})
+
+export const setSpinnerMode = spinner => ({
+  type: 'SET_SPINNER',
+  spinner: spinner
 })
