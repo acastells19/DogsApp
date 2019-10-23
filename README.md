@@ -41,12 +41,17 @@ npm run start
 
 ## Taken decisions
 
--  
-- 
--
--
+- [React](https://reactjs.org/) & [Redux](https://redux.js.org/) as support/interface building frameworks/libraries: Previous knowledge + personal taste + company preferences.
+- [React Google Charts](https://www.npmjs.com/package/react-google-charts) as charts support library: Previous knowledge + good integration with React app.
+- [React Scripts](https://www.npmjs.com/package/react-scripts) as project builder library: Previous knowledge + simplicity.
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html) and [Redux Hooks](https://react-redux.js.org/next/api/hooks): New and better ways to work (needed some little training).
+- Including an spinner to make the user understand that some task is being processed: Always give feedback to the user if something is being performed in background, maybe this case wasn't completely necessary because the API responded quite fast but in case of network bad latency a delay on results desplaying may cause confusion. 
 
 ## Possible improvements
+
+- Add some unit testing.
+- Add some errors handling behavior (based on Dogs API possible error response codes; 404, 500...).
+- As suggestions to extensive features; two pages web app with a new page for displaying images based on user input (introducing the breed), encapsulating the Chart in an own component to have a more defined hierarchy (Main component wrapping ChartComponent and Spinner) ...
 
 
 
