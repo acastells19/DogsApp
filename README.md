@@ -41,6 +41,11 @@ npm run start
 
 ## Taken decisions
 
+-  
+- 
+-
+-
+
 ## Possible improvements
 
 

@@ -1,6 +1,6 @@
 export const setBreedImagesCount = (breed, count) => ({
   type: 'SET_BREED_IMAGES_COUNT',
-  breed: breed,
+  name: breed,
   count: count
 })
 

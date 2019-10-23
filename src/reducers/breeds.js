@@ -4,7 +4,7 @@ const breeds = (state = [], action) => {
       return [
         ...state,
         {
-          breed: action.breed,
+          name: action.name,
           count: action.count
         }
       ]

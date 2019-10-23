@@ -1,36 +1,43 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import * as api from '../api/BreedImages'
-import Spinner from './Spinner'
+import { Spinner } from './Spinner'
+import { Chart } from "react-google-charts"
 
-const mapStateToProps = (state, ownProps) => ({
-  breeds: state.breeds,
-  spinner: state.spinner
-})
+export const Main = props => {
+    
+    // Hook for getting a reference to the Redux store
+    const dispatch = useDispatch();
 
-class Main extends React.Component {
+    // Hook for calling the API
+    useEffect(() => {
+      api.setImagesCountPerBreed(dispatch);
+    }, [props])
 
-    componentDidMount() {
-    	api.setImagesCountPerBreed();
-    }
+    // Hooks for getting the state from the store
+    const breeds = ((useSelector(state => state.breeds)).sort((a, b) => (a.count < b.count) ? 1 : -1)).slice(0, 9);
+    const spinner = useSelector(state => state.spinner);
 
-    render() {
-    	return ( 
-        <div id='container'>
-  		  	<div id='app'>
-  		  		<li id='breeds-list'>
-  		  			{this.props.breeds.map((breed, index) => (
-          				<ul key={index}>{breed.breed} - {breed.count}</ul>
-        				))}
-  		  		</li>
-  		  	</div>
-          <Spinner visible={this.props.spinner}/>
+    let chartData = [['Breed', 'Number of images']]
+    breeds.forEach((breed) => {
+      chartData.push([breed.name, breed.count])
+    });
+
+    return ( 
+      <div id='container'>
+        <div id='app'>
+          <Chart
+            width={'600px'}
+            height={'400px'}
+            chartType="PieChart"
+            data={chartData}
+            options={{
+              title: 'Top10 dog breeds based on the amount of images',
+              is3D: true,
+            }}
+          />
         </div>
-		  )
-    }
-
+        <Spinner visible={spinner}/>
+      </div>
+    ) 
 }
-
-export default connect(
-  mapStateToProps
-)(Main)
